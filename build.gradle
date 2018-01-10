@@ -1,0 +1,76 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.2.10'
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    supportLibVersion = '26.1.0'
+    butterKnifeVersion = '8.8.1'
+    retrofitVersion = '2.3.0'
+    okhttpVersion = '3.9.1'
+    okhttpLogging = '3.4.1'
+    gsonVersion = '2.8.0'
+    daggerVersion = '2.14.1'
+    timberVersion = '4.6.0'
+    glideVersion = "4.5.0"
+
+    deps = [
+
+            // Support libs
+            supportCompat    : "com.android.support:support-compat:$supportLibVersion",
+            supportv13       : "com.android.support:support-v13:$supportLibVersion",
+            supportdesign    : "com.android.support:design:$supportLibVersion",
+            appcompatv7      : "com.android.support:appcompat-v7:$supportLibVersion",
+
+            //Retrofit
+            retrofitBase     : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+
+            //Json parser
+            gson             : "com.google.code.gson:gson:$gsonVersion",
+
+            //Okhttp
+            okhttp           : "com.squareup.okhttp3:okhttp:$okhttpVersion",
+            logger           : "com.squareup.okhttp3:logging-interceptor:$okhttpLogging",
+
+            // Injections
+            bkInject         : "com.jakewharton:butterknife:$butterKnifeVersion",
+            bkAnnotation     : "com.jakewharton:butterknife-compiler:$butterKnifeVersion",
+
+            daggerInject     : "com.google.dagger:dagger:$daggerVersion",
+            daggerAnnotation : "com.google.dagger:dagger-compiler:$daggerVersion",
+
+            //Timber Logger
+            timber           : "com.jakewharton.timber:timber:$timberVersion",
+
+            // Image Loader
+            glide            : "com.github.bumptech.glide:glide:$glideVersion",
+            glideOkHttp      : "com.github.bumptech.glide:okhttp3-integration:$glideVersion",
+            glideAnnotation  : "com.github.bumptech.glide:compiler:$glideVersion"
+    ]
+
+}
