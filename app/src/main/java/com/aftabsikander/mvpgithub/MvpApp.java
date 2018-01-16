@@ -2,9 +2,11 @@ package com.aftabsikander.mvpgithub;
 
 import android.app.Application;
 
-import com.aftabsikander.mvpgithub.data.network.WeatherApiService;
-import com.aftabsikander.mvpgithub.di.component.DaggerWeatherApplicationComponent;
-import com.aftabsikander.mvpgithub.di.component.WeatherApplicationComponent;
+import com.aftabsikander.mvpgithub.data.DataManager;
+import com.aftabsikander.mvpgithub.data.network.ApiHelper;
+import com.aftabsikander.mvpgithub.di.component.ApplicationComponent;
+import com.aftabsikander.mvpgithub.di.component.DaggerApplicationComponent;
+import com.aftabsikander.mvpgithub.di.module.ApplicationModule;
 import com.aftabsikander.mvpgithub.di.module.ContextModule;
 
 import javax.inject.Inject;
@@ -18,7 +20,12 @@ import timber.log.Timber;
 public class MvpApp extends Application {
 
     @Inject
-    WeatherApiService weatherApiService;
+    DataManager mDataManager;
+
+    @Inject
+    ApiHelper apiHelper;
+
+    private ApplicationComponent mApplicationComponent;
 
     @Override
     public void onCreate() {
@@ -26,23 +33,23 @@ public class MvpApp extends Application {
 
         Timber.plant(new Timber.DebugTree());
 
-        WeatherApplicationComponent component = DaggerWeatherApplicationComponent.builder()
+        mApplicationComponent = DaggerApplicationComponent.builder()
                 .contextModule(new ContextModule(this))
+                .applicationModule(new ApplicationModule(this))
                 .build();
 
-        component.inject(this);
+        mApplicationComponent.inject(this);
 
-        WeatherApiService weatherApiService2 = component.getWeatherApi();
-        WeatherApiService weatherApiService3 = component.getWeatherApi();
 
-      /*  glide = component.getGlideApp();
-        weatherApiService = component.getWeatherApi();*/
     }
 
     //region Helper methods for dagger global objects
+    public ApplicationComponent getComponent() {
+        return mApplicationComponent;
+    }
 
-    public WeatherApiService getWeatherApiService() {
-        return weatherApiService;
+    public void setComponent(ApplicationComponent applicationComponent) {
+        mApplicationComponent = applicationComponent;
     }
     //endregion
 }

@@ -56,4 +56,5 @@ public class NetworkModule {
                 .connectTimeout(ApiConfiguration.CONNECTION_TIME_OUT, TimeUnit.SECONDS)
                 .build();
     }
+
 }

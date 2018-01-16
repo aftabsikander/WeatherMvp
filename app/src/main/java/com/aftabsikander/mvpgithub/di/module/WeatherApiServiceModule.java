@@ -1,7 +1,7 @@
 package com.aftabsikander.mvpgithub.di.module;
 
 import com.aftabsikander.mvpgithub.data.network.ApiConfiguration;
-import com.aftabsikander.mvpgithub.data.network.WeatherApiService;
+import com.aftabsikander.mvpgithub.data.network.ApiHelper;
 import com.aftabsikander.mvpgithub.di.PerActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,8 +21,8 @@ public class WeatherApiServiceModule {
 
     @Provides
     @PerActivity
-    public WeatherApiService weatherApiService(Retrofit weatherRetrofit) {
-        return weatherRetrofit.create(WeatherApiService.class);
+    public ApiHelper weatherApiService(Retrofit weatherRetrofit) {
+        return weatherRetrofit.create(ApiHelper.class);
     }
 
     @Provides
@@ -42,4 +42,5 @@ public class WeatherApiServiceModule {
                 .baseUrl(ApiConfiguration.BASE_URL)
                 .build();
     }
+
 }
