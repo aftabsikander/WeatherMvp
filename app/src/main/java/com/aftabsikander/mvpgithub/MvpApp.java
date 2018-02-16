@@ -39,7 +39,7 @@ public class MvpApp extends Application {
                 .build();
 
         mApplicationComponent.inject(this);
-
+        //mApplicationComponent.getApplicationManager();
 
     }
 

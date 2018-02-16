@@ -2,7 +2,7 @@ package com.aftabsikander.mvpgithub.data.network;
 
 import com.aftabsikander.mvpgithub.data.network.model.weather.ForecastResult;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -13,6 +13,6 @@ import retrofit2.http.Query;
 public interface ApiHelper {
 
     @GET(ApiConfiguration.DAILY_FORECAST_URL)
-    Call<ForecastResult> getDailyForecast(@Query("APPID") String apiKey,
-                                          @Query("q") int zipCode);
+    Observable<ForecastResult> getDailyForecast(@Query("APPID") String apiKey,
+                                                @Query("q") int zipCode);
 }

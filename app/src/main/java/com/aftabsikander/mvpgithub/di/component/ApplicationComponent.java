@@ -6,7 +6,7 @@ import android.content.Context;
 import com.aftabsikander.mvpgithub.MvpApp;
 import com.aftabsikander.mvpgithub.data.DataManager;
 import com.aftabsikander.mvpgithub.di.ApplicationContext;
-import com.aftabsikander.mvpgithub.di.PerActivity;
+import com.aftabsikander.mvpgithub.di.SingleInstance;
 import com.aftabsikander.mvpgithub.di.module.ApplicationModule;
 
 import dagger.Component;
@@ -15,7 +15,8 @@ import dagger.Component;
  * Created by aftabsikander on 1/10/2018.
  */
 
-@PerActivity
+//@PerActivity
+@SingleInstance
 @Component(modules = {ApplicationModule.class})
 public interface ApplicationComponent {
 
@@ -27,7 +28,5 @@ public interface ApplicationComponent {
     Application application();
 
     DataManager getDataManager();
-
-    ApplicationModule getApplicationManager();
 
 }

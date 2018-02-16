@@ -4,18 +4,18 @@ import android.content.Context;
 
 import com.aftabsikander.mvpgithub.data.network.ApiHelper;
 import com.aftabsikander.mvpgithub.data.network.model.weather.ForecastResult;
+import com.aftabsikander.mvpgithub.di.ActivityContext;
 import com.aftabsikander.mvpgithub.di.ApplicationContext;
-import com.aftabsikander.mvpgithub.di.PerActivity;
 
 import javax.inject.Inject;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 
 /**
  * Created by aftabsikander on 1/16/2018.
  */
 
-@PerActivity
+@ActivityContext
 public class AppDataManager implements DataManager {
 
     private final Context mContext;
@@ -28,7 +28,7 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Call<ForecastResult> getDailyForecast(String apiKey, int zipCode) {
+    public Observable<ForecastResult> getDailyForecast(String apiKey, int zipCode) {
         return appApiHelper.getDailyForecast(apiKey, zipCode);
     }
 }

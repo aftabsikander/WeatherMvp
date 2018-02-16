@@ -6,7 +6,7 @@ import android.content.Context;
 import com.aftabsikander.mvpgithub.data.AppDataManager;
 import com.aftabsikander.mvpgithub.data.DataManager;
 import com.aftabsikander.mvpgithub.di.ApplicationContext;
-import com.aftabsikander.mvpgithub.di.PerActivity;
+import com.aftabsikander.mvpgithub.di.SingleInstance;
 
 import dagger.Module;
 import dagger.Provides;
@@ -36,7 +36,7 @@ public class ApplicationModule {
     }
 
     @Provides
-    @PerActivity
+    @SingleInstance
     DataManager provideDataManager(AppDataManager appDataManager) {
         return appDataManager;
     }
